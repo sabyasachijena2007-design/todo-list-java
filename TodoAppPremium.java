@@ -13,7 +13,7 @@ import org.w3c.dom.events.MouseEvent;
 
 public class TodoAppPremium {
 
-    // ── Color Palette ──────────────────────────────────────────
+    
     static final Color GOLD_BRIGHT   = new Color(255, 215,   0);
     static final Color GOLD_DARK     = new Color(184, 134,  11);
     static final Color GOLD_LIGHT    = new Color(255, 236, 120);
@@ -27,10 +27,9 @@ public class TodoAppPremium {
     static final Color GREEN_DONE    = new Color( 80, 200, 100);
     static final Color RED_DELETE    = new Color(220,  70,  70);
 
-    // ── Fonts ──────────────────────────────────────────────────
+ 
     static Font FONT_TITLE, FONT_BODY, FONT_SMALL, FONT_ICON;
 
-    // ── State ──────────────────────────────────────────────────
     private JFrame frame;
     private List<TaskItem> tasks = new ArrayList<>();
     private LocalDate selectedDate = LocalDate.now();
@@ -43,15 +42,15 @@ public class TodoAppPremium {
     private JLabel statusLabel;
     private int completedCount = 0;
 
-    // ── Particle System ────────────────────────────────────────
+    ─
     private List<Particle> particles = new ArrayList<>();
     private JPanel particleLayer;
 
-    // ── Data Model ─────────────────────────────────────────────
+   
     static class TaskItem {
         String text;
         boolean done;
-        String priority;   // HIGH / MED / LOW
+        String priority;  
         LocalDate date;
         boolean checked;
         float fadeAlpha = 0f;
@@ -80,7 +79,6 @@ public class TodoAppPremium {
         }
     }
 
-    // ── Constructor ────────────────────────────────────────────
     public TodoAppPremium() {
         loadFonts();
         buildFrame();
@@ -96,7 +94,7 @@ public class TodoAppPremium {
         FONT_ICON  = new Font("Dialog", Font.BOLD, 16);
     }
 
-    // ── Frame Setup ────────────────────────────────────────────
+   
     private void buildFrame() {
         frame = new JFrame("◆SOMU TASKS");
         frame.setSize(860, 680);
@@ -105,7 +103,7 @@ public class TodoAppPremium {
         frame.setLocationRelativeTo(null);
         frame.setUndecorated(true);
 
-        // Custom title bar
+   
         JPanel titleBar = buildTitleBar();
         frame.add(titleBar, BorderLayout.NORTH);
         frame.getContentPane().setBackground(BLACK_DEEP);
@@ -127,13 +125,13 @@ public class TodoAppPremium {
         bar.setPreferredSize(new Dimension(0, 48));
         bar.setBorder(new EmptyBorder(0, 18, 0, 12));
 
-        // Logo
+    
         JLabel logo = new JLabel("◆ TO-DO LIST APP");
         logo.setFont(FONT_TITLE);
         logo.setForeground(GOLD_BRIGHT);
 
-        // Window controls
-        JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
+       
+        JPanel controls =  // Window controlsnew JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         controls.setOpaque(false);
         JButton minBtn  = makeDotBtn(new Color(255, 189, 68),  "─");
         JButton closeBtn= makeDotBtn(RED_DELETE, "✕");
@@ -145,7 +143,7 @@ public class TodoAppPremium {
         bar.add(logo, BorderLayout.WEST);
         bar.add(controls, BorderLayout.EAST);
 
-        // Drag support
+       
         Point[] drag = {null};
         bar.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) { drag[0] = e.getPoint(); }
@@ -182,15 +180,14 @@ public class TodoAppPremium {
         return btn;
     }
 
-    // ── Main UI ────────────────────────────────────────────────
     private void buildUI() {
         JPanel root = new JPanel(new BorderLayout(0, 0));
         root.setBackground(BLACK_DEEP);
 
-        // Left sidebar nav
+       
         JPanel sidebar = buildSidebar();
 
-        // Right content area with CardLayout
+      
         cardLayout = new CardLayout();
         mainContent = new JPanel(cardLayout);
         mainContent.setBackground(BLACK_DEEP);
@@ -205,7 +202,6 @@ public class TodoAppPremium {
         frame.setVisible(true);
     }
 
-    // ── Sidebar ────────────────────────────────────────────────
     private JPanel buildSidebar() {
         JPanel side = new JPanel() {
             @Override protected void paintComponent(Graphics g) {
@@ -223,18 +219,18 @@ public class TodoAppPremium {
         side.setLayout(new BoxLayout(side, BoxLayout.Y_AXIS));
         side.setBorder(new EmptyBorder(24, 0, 24, 0));
 
-        // Avatar / logo area
+     
         JPanel avatar = new JPanel() {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 int cx = getWidth()/2, cy = 44;
-                // Glow
+            
                 for (int i = 5; i > 0; i--) {
                     g2.setColor(new Color(255,215,0, 15*i));
                     g2.fillOval(cx-35-i*2, cy-35-i*2, (35+i*2)*2, (35+i*2)*2);
                 }
-                // Circle
+             
                 GradientPaint gp = new GradientPaint(cx-35,cy-35, GOLD_BRIGHT, cx+35, cy+35, GOLD_DARK);
                 g2.setPaint(gp);
                 g2.fillOval(cx-35, cy-35, 70, 70);
@@ -257,7 +253,7 @@ public class TodoAppPremium {
         side.add(sub);
         side.add(Box.createVerticalStrut(28));
 
-        // Nav items
+     
         String[][] navItems = {{"📋", "My Tasks", "TASKS"}, {"📅", "Calendar", "CALENDAR"}};
         for (String[] item : navItems) {
             JButton btn = buildNavButton(item[0], item[1], item[2]);
@@ -267,7 +263,7 @@ public class TodoAppPremium {
 
         side.add(Box.createVerticalGlue());
 
-        // Stats panel
+      
         JPanel stats = buildSidebarStats();
         side.add(stats);
 
@@ -332,7 +328,7 @@ public class TodoAppPremium {
                 g2.setColor(GOLD_BRIGHT);
                 g2.drawString(done + "/" + total, 22, 62);
 
-                // Mini progress bar
+                
                 int barW = getWidth() - 44;
                 g2.setColor(BLACK_PANEL);
                 g2.fillRoundRect(22, 72, barW, 6, 6, 6);
@@ -349,13 +345,13 @@ public class TodoAppPremium {
         return p;
     }
 
-    // ── Tasks Page ─────────────────────────────────────────────
+  
     private JPanel buildTasksPage() {
         JPanel page = new JPanel(new BorderLayout(0, 16));
         page.setBackground(BLACK_DEEP);
         page.setBorder(new EmptyBorder(24, 24, 0, 24));
 
-        // Header
+      
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         JLabel h = new JLabel("My Tasks");
@@ -367,10 +363,9 @@ public class TodoAppPremium {
         header.add(h, BorderLayout.WEST);
         header.add(dateLabel, BorderLayout.EAST);
 
-        // Input Card
+       
         JPanel inputCard = buildInputCard();
 
-        // Task list
         taskListPanel = new JPanel();
         taskListPanel.setLayout(new BoxLayout(taskListPanel, BoxLayout.Y_AXIS));
         taskListPanel.setBackground(BLACK_DEEP);
@@ -394,7 +389,7 @@ public class TodoAppPremium {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                // Glow border
+            
                 for (int i = 3; i > 0; i--) {
                     g2.setColor(new Color(255,215,0,10*i));
                     g2.setStroke(new BasicStroke(i*2f));
@@ -451,7 +446,7 @@ public class TodoAppPremium {
             JPanel row = buildTaskRow(task, i);
             taskListPanel.add(row);
             taskListPanel.add(Box.createVerticalStrut(8));
-            // Animate in
+           
             final float[] alpha = {0};
             final int[] yOff = {20};
             Timer t = new Timer();
@@ -473,15 +468,15 @@ public class TodoAppPremium {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                // Background
+               
                 g2.setColor(task.done ? new Color(30, 50, 30) : BLACK_CARD);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 14, 14);
-                // Priority stripe
+               
                 Color stripeColor = task.priority.equals("HIGH") ? new Color(220,70,70)
                         : task.priority.equals("MED")  ? GOLD_DARK : GREEN_DONE;
                 g2.setColor(stripeColor);
                 g2.fillRoundRect(0, 0, 4, getHeight(), 4, 4);
-                // Border
+               
                 g2.setColor(task.done ? new Color(80,120,80) : BLACK_BORDER);
                 g2.setStroke(new BasicStroke(1f));
                 g2.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 14, 14);
@@ -492,7 +487,7 @@ public class TodoAppPremium {
         row.setPreferredSize(new Dimension(0, 58));
         row.setBorder(new EmptyBorder(0, 12, 0, 12));
 
-        // Checkbox
+        
         JCheckBox check = new JCheckBox();
         check.setSelected(task.done);
         check.setOpaque(false);
@@ -503,17 +498,17 @@ public class TodoAppPremium {
             refreshTaskList();
         });
 
-        // Text
+      
         JLabel label = new JLabel(task.done ? "<html><strike>" + task.text + "</strike></html>" : task.text);
         label.setFont(new Font("Georgia", Font.PLAIN, 14));
         label.setForeground(task.done ? TEXT_MUTED : TEXT_PRIMARY);
 
-        // Date badge
+   
         JLabel dateBadge = new JLabel(task.date.format(DateTimeFormatter.ofPattern("MMM d")));
         dateBadge.setFont(FONT_SMALL);
         dateBadge.setForeground(TEXT_MUTED);
 
-        // Delete
+       
         JButton del = new JButton("✕") {
             boolean hov = false;
             {
@@ -556,7 +551,7 @@ public class TodoAppPremium {
         row.add(left, BorderLayout.CENTER);
         row.add(right, BorderLayout.EAST);
 
-        // Hover animation
+       
         row.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) { row.setBorder(new CompoundBorder(
                 new LineBorder(GOLD_DARK, 1, true), new EmptyBorder(0, 12, 0, 12))); row.repaint(); }
@@ -566,7 +561,7 @@ public class TodoAppPremium {
         return row;
     }
 
-    // ── Calendar Page ──────────────────────────────────────────
+   
     private JPanel buildCalendarPage() {
         JPanel page = new JPanel(new BorderLayout(0, 16));
         page.setBackground(BLACK_DEEP);
@@ -578,7 +573,7 @@ public class TodoAppPremium {
 
         calendarPanel = buildCalendarWidget();
 
-        // Tasks for selected date
+        
         JPanel dayTasks = new JPanel(new BorderLayout());
         dayTasks.setBackground(BLACK_CARD);
         dayTasks.setBorder(BorderFactory.createCompoundBorder(
@@ -696,7 +691,7 @@ public class TodoAppPremium {
                     FontMetrics fm = g2.getFontMetrics();
                     String s = String.valueOf(date.getDayOfMonth());
                     g2.drawString(s, (getWidth()-fm.stringWidth(s))/2, (getHeight()+fm.getAscent()-fm.getDescent())/2);
-                    // Task dot
+                
                     if (hasTasks > 0) {
                         g2.setColor(isSel ? BLACK_DEEP : GOLD_BRIGHT);
                         g2.fillOval(getWidth()/2-3, getHeight()-8, 6, 6);
@@ -738,7 +733,7 @@ public class TodoAppPremium {
         return btn;
     }
 
-    // ── Status Bar ─────────────────────────────────────────────
+   
     private JPanel buildStatusBar() {
         JPanel bar = new JPanel(new BorderLayout()) {
             @Override protected void paintComponent(Graphics g) {
@@ -770,7 +765,7 @@ public class TodoAppPremium {
         statusLabel.setText("Tasks: " + tasks.size() + "  ◆  Completed: " + done + "  ◆  Pending: " + (tasks.size()-done));
     }
 
-    // ── Helpers ────────────────────────────────────────────────
+  
     private JButton buildGoldButton(String text) {
         JButton btn = new JButton(text) {
             boolean hov = false;
@@ -871,7 +866,6 @@ public class TodoAppPremium {
         }, 0, 16);
     }
 
-    // ── Custom UI Classes ──────────────────────────────────────
     static class GoldCheckBoxUI extends javax.swing.plaf.basic.BasicCheckBoxUI {
         @Override public synchronized void paint(Graphics g, JComponent c) {
             JCheckBox cb = (JCheckBox) c;
@@ -916,7 +910,7 @@ public class TodoAppPremium {
         }
     }
 
-    // ── Entry Point ────────────────────────────────────────────
+  
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
