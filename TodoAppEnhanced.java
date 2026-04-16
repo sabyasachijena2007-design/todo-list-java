@@ -10,15 +10,15 @@ public class TodoAppEnhanced {
 
     public TodoAppEnhanced() {
 
-        // Frame
+        
         frame = new JFrame("✨ To-Do List Manager");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        // ===== TOP PANEL =====
+        
         JPanel topPanel = new JPanel();
-        topPanel.setBackground(new Color(30, 144, 255)); // blue theme
+        topPanel.setBackground(new Color(30, 144, 255)); 
 
         taskField = new JTextField(20);
         JButton addBtn = new JButton("➕ Add");
@@ -28,7 +28,7 @@ public class TodoAppEnhanced {
         topPanel.add(taskField);
         topPanel.add(addBtn);
 
-        // ===== CENTER =====
+        
         taskModel = new DefaultListModel<>();
         taskList = new JList<>(taskModel);
         taskList.setFont(new Font("Arial", Font.BOLD, 14));
@@ -36,7 +36,7 @@ public class TodoAppEnhanced {
 
         JScrollPane scrollPane = new JScrollPane(taskList);
 
-        // ===== BOTTOM PANEL =====
+        
         JPanel bottomPanel = new JPanel();
 
         JButton deleteBtn = new JButton("❌ Delete");
@@ -51,14 +51,13 @@ public class TodoAppEnhanced {
         bottomPanel.add(completeBtn);
         bottomPanel.add(clearBtn);
 
-        // ===== ADD TO FRAME =====
+        
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.add(bottomPanel, BorderLayout.SOUTH);
 
-        // ===== ACTIONS =====
 
-        // Add Task (with simple animation effect)
+        
         addBtn.addActionListener(e -> {
             String task = taskField.getText().trim();
 
@@ -66,13 +65,13 @@ public class TodoAppEnhanced {
                 taskModel.addElement("🟡 " + task);
                 taskField.setText("");
 
-                flashEffect(frame); // animation effect
+                flashEffect(frame); 
             } else {
                 JOptionPane.showMessageDialog(frame, "Task cannot be empty!");
             }
         });
 
-        // Delete Task
+        
         deleteBtn.addActionListener(e -> {
             int index = taskList.getSelectedIndex();
 
@@ -83,7 +82,7 @@ public class TodoAppEnhanced {
             }
         });
 
-        // Mark Completed
+       
         completeBtn.addActionListener(e -> {
             int index = taskList.getSelectedIndex();
 
@@ -98,13 +97,13 @@ public class TodoAppEnhanced {
             }
         });
 
-        // Clear All
+       
         clearBtn.addActionListener(e -> taskModel.clear());
 
         frame.setVisible(true);
     }
 
-    // ===== Button Styling =====
+   
     private void styleButton(JButton btn) {
         btn.setFocusPainted(false);
         btn.setBackground(new Color(70, 130, 180));
@@ -112,7 +111,7 @@ public class TodoAppEnhanced {
         btn.setFont(new Font("Arial", Font.BOLD, 12));
     }
 
-    // ===== Simple Animation Effect =====
+   
     private void flashEffect(JFrame frame) {
         Color original = frame.getContentPane().getBackground();
 
