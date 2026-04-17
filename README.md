@@ -1,88 +1,96 @@
-#  To-Do List Manager
+# 🚀 To-Do List App (Java Swing) !
 
-A simple desktop To-Do List application built with **Java Swing**. Manage your tasks with a clean GUI — add, complete, delete, and clear tasks effortlessly.
-
----
-
-##  Features
-
--  Add new tasks
--  Delete selected tasks
--  Mark tasks as Completed
--  Clear all tasks at once
--  Clean and minimal GUI using Java Swing
+A desktop-based task management application built using Java Swing with an elegant UI, priority handling, and calendar integration.
 
 ---
 
-##  Getting Started
+## 📌 Overview !
 
-### Prerequisites
-
-- Java Development Kit (JDK) **8 or higher**
-- A terminal / command prompt
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/todo-app-gui.git
-   cd todo-app-gui
-   ```
-
-2. **Compile the source file**
-   ```bash
-   javac TodoAppGUI.java
-   ```
-
-3. **Run the application**
-   ```bash
-   java TodoAppGUI
-   ```
+This project helps users efficiently manage daily tasks with structured organization and an interactive interface.
 
 ---
 
-##  How to Use
+## ✨ Features !
 
-| Action | How |
-|---|---|
-| Add a task | Type in the text field and click **Add Task** |
-| Delete a task | Select a task from the list and click **Delete** |
-| Mark as completed | Select a task and click **Mark Completed** |
-| Clear everything | Click **Clear All** to remove all tasks |
-
-Tasks are displayed with status labels:
-- `[Pending]` — newly added task
-- `[Completed]` — task marked as done
+* ✔ Add and delete tasks !
+* ✔ Mark tasks as completed !
+* ✔ Set task priority (High, Medium, Low) !
+* ✔ Assign tasks to specific dates !
+* ✔ Integrated calendar view
+* ✔ Track daily progress
 
 ---
 
-##  Project Structure
+## 🛠️ Technologies Used !
+
+* Java
+* Swing (GUI Framework)
+* AWT
+* Java Time API
+
+---
+
+## 📂 Project Structure !
 
 ```
-todo-app-gui/
-└── TodoAppGUI.java   # Main application file
+TodoAppGold.java
+README.md
 ```
 
 ---
 
-##  Built With
+## ▶️ How to Run !
 
-- **Java** — Core language
-- **Java Swing** — GUI framework
-- **AWT** — Layout and event handling
+1. Compile the program:
 
----
+```
+javac TodoAppGold.java
+```
 
-📄 License
-This project is open source and available under the MIT License.
+2. Run the application:
 
-## Author
-Made dedicately by our team-
-# SABYASACHI JENA
-# SMRUTI SOURABH BEHERA
-# SIPRANSHU SEKHAR JENA
-# RUDRA PRASAD SAMATARAY
+```
+java TodoAppGold
+```
 
 ---
 
-THANK YOU
+## ⚙️ How It Works !
+
+* Tasks are stored in a structured list !
+* Each task includes:
+
+  * Description
+  * Priority
+  * Date
+  * Completion status
+* UI updates dynamically based on user actions !
+
+---
+
+## ⚠️ Limitations !
+
+* No data persistence (tasks are lost after closing) !
+* No authentication system
+* No external database integration
+
+---
+
+## 🔥 Future Improvements !
+
+* Add file or database storage !
+* Implement user authentication
+* Add reminders and notifications !
+
+---
+
+## 👤 Author !
+
+**SABYASACHI JENA**
+*RUDRA PRASAD SAMANTARAY*
+*SMRUTI SOURABHA BEHERA*
+*SIPRANSHU SEKHAR JENA*
+
+---
+
+
