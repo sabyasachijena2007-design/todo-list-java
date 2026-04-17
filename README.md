@@ -96,7 +96,7 @@ java TodoAppGold
 
 
 ### SCREENSHOTS OF THE OUTPUT ###
-![Image Alt](). 
+![Image Alt](https://github.com/sabyasachijena2007-design/todo-list-java/blob/121f459bad3933b4928f2b0e99873991a8487c96/Screenshot%202026-04-17%20220420.png). 
 
 ![Image Alt](). 
 
